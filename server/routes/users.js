@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const User = require("../models/users.js");
+const dbconfig = require("../config/database");
 
 // get to users
 router.get("/", (req, res) => {
@@ -59,8 +60,9 @@ router.post("/authenticate", (req, res, next) => {
     });
   });
 });
+// a function to create a token and return it
 function createToken(user) {
-  const secret = "process.env.JWT_SECRET";
+  const secret = dbconfig.secret;
   const payload = {
     subject: user.id,
     username: user.username
