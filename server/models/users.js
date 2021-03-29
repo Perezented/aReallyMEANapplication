@@ -45,6 +45,7 @@ module.exports.addUser = function (newUser, callback) {
   });
 };
 
+// compares the hashed password and the user inputed password to login
 module.exports.comparePassword = function (canidatePassword, hash, callback) {
   bcrypt.compare(canidatePassword, hash, (err, isMatch) => {
     if (err)

@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
 const User = require("../models/users.js");
 
 // get to users
@@ -26,10 +27,49 @@ router.post("/register", (req, res, next) => {
 });
 
 // Authentication
-router.post("/authenticate", (req, res) => {
-  res.send("Authenticate page");
-});
+router.post("/authenticate", (req, res, next) => {
+  // User sent in creds
+  const username = req.body.username;
+  const password = req.body.password;
 
+  User.getUserByUsername(username, (err, user) => {
+    if (err) throw err;
+    // Check to make sure user is an existing user
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        msg: "User is not found in out system. Would you like to register?"
+      });
+    }
+    // If user exists
+    // Check to see if password matches
+    User.comparePassword(password, user.password, (err, isMatch) => {
+      if (err) throw err;
+      if (isMatch) {
+        const token = createToken(user);
+        res.status(200).json({
+          user,
+          session: req.session,
+          token: token
+        });
+      } else {
+        //otherwise, wrong password
+        return res.json({ success: false, msg: "Wrong password" });
+      }
+    });
+  });
+});
+function createToken(user) {
+  const secret = "process.env.JWT_SECRET";
+  const payload = {
+    subject: user.id,
+    username: user.username
+  };
+  const options = {
+    expiresIn: "6h"
+  };
+  return jwt.sign(payload, secret, options);
+}
 // Profile
 router.get("/profile", (req, res) => {
   res.send("Profile page");
