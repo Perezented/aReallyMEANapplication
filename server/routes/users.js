@@ -28,7 +28,7 @@ router.post("/register", (req, res, next) => {
 });
 
 // Authentication
-router.post("/authenticate", (req, res, next) => {
+router.post("/login", (req, res, next) => {
   // User sent in creds
   const username = req.body.username;
   const password = req.body.password;
