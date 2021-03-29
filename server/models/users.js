@@ -31,7 +31,7 @@ module.exports.getUserById = function (id, callback) {
 // get by username
 module.exports.getUserByUsername = function (username, callback) {
   const query = { username: username };
-  User.findByOne(query, callback);
+  User.findOne(query, callback);
 };
 
 // adding user and hashing password
@@ -42,5 +42,17 @@ module.exports.addUser = function (newUser, callback) {
       newUser.password = hash;
       newUser.save(callback);
     });
+  });
+};
+
+module.exports.comparePassword = function (canidatePassword, hash, callback) {
+  bcrypt.compare(canidatePassword, hash, (err, isMatch) => {
+    if (err)
+      return res.status(401).json({
+        Error:
+          "The username and password combination was not found in our database.",
+        err
+      });
+    callback(null, isMatch);
   });
 };
