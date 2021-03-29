@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
+const passport = require("passport");
 const User = require("../models/users.js");
 const dbconfig = require("../config/database");
 
@@ -72,10 +73,17 @@ function createToken(user) {
   };
   return jwt.sign(payload, secret, options);
 }
+
 // Profile
-router.get("/profile", (req, res) => {
-  res.send("Profile page");
-});
+router.get(
+  "/profile",
+  passport.authenticate("jwt", { session: false }),
+  function (req, res) {
+    console.log("in profile");
+    console.log(req);
+    res.status(200).json({ user: req.user });
+  }
+);
 
 // Validate
 router.get("/validate", (req, res) => {
