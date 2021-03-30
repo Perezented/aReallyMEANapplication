@@ -5,10 +5,15 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 
+import {AuthService} from './services/auth.service'
 import {ValidateService} from './services/validate.service'
+import { FlashMessagesModule } from 'angular2-flash-messages';
+import { HttpClientModule } from '@angular/common/http';
+
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
@@ -17,6 +22,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     NavbarComponent,
+    LoginComponent,
     RegisterComponent,
     HomeComponent,
     AppComponent
@@ -25,8 +31,10 @@ const appRoutes: Routes = [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
+    FlashMessagesModule.forRoot(),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ValidateService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
