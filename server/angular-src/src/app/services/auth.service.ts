@@ -18,4 +18,11 @@ export class AuthService {
     );
     
   }
+  authenticateUser(user) {
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3007/users/login', user, { headers: headers })
+    .pipe(map((res)=> res)
+    );
+  }
 }
