@@ -1,5 +1,5 @@
 <div class="jumbotron text-center">
-  <h1>MEAN Student Checkout App</h1>
+  <h1>A Really MEAN App</h1>
   <p class="lead">Welcome to a custom really MEAN app.</p>
   <div>
     <a
@@ -19,30 +19,49 @@
 
 <div class="row">
   <div class="col-md-4">
-    <h3>Title Here</h3>
+    <h3>MongoDB</h3>
     <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni modi
-      voluptatem quasi corporis labore nulla ad, inventore beatae amet
-      voluptates ducimus aperiam. Facere porro quis voluptas nulla quae nisi
-      consequatur.
+      Mongo Atlas is used to connect to the database. Heroku is used to deploy
+      but since Nov. 2020, mLabs is not available. Other options were available
+      but Mongo Atlas worked excellent with Heroku.
+    </p>
+    <p>
+      User database is housed by a MongoDB server. Mongoose was used in the
+      Node/Express section to connect to MongoDB. A Mongoose Schema was used as
+      well in the Users model to confirm the users sent in to register. Bcrypt
+      was used to hash the passwords to save on the database. It then compares
+      to authorize users to specific protected routes.
     </p>
   </div>
   <div class="col-md-4">
-    <h3>Title Here</h3>
+    <h3>Express/Node</h3>
     <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni modi
-      voluptatem quasi corporis labore nulla ad, inventore beatae amet
-      voluptates ducimus aperiam. Facere porro quis voluptas nulla quae nisi
-      consequatur.
+      Back end server is developed using Node.js alongside its trusty sidekick,
+      Express.js. The server is also running on CORS, JSON Web Token
+      passport-jwt, Mongoose. Passport simplified the JSON Web Token
+      authentication to authorize logged-in users to protected routes.
+      Authentication is received using an 'Authentication header with a
+      'bearer'. A JWT is sent back to the front end for the rest of the session,
+      6 hrs. The server is currently mainly for users’ information to register
+      and log in.
     </p>
   </div>
   <div class="col-md-4">
-    <h3>Title Here</h3>
+    <h3>Angular</h3>
     <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni modi
-      voluptatem quasi corporis labore nulla ad, inventore beatae amet
-      voluptates ducimus aperiam. Facere porro quis voluptas nulla quae nisi
-      consequatur.
+      The login to this page to view all components is 'admin' with a password
+      of 'password'.
+    </p>
+    <p>
+      The page you are currently on was developed using Angular. It is comprised
+      of 6 main components with some helpers. The login and register information
+      is relayed to the Node/Express + MongoDB server. It is hashed in between
+      so the database is not holding text passwords, very important. Flash
+      messages are used to display quick messages when a user is logged in or
+      not able to log in. There is some incorporation of AuthGuards so a user
+      cannot get to '/profile' nor '/dashboard' until logged in. The nav bar
+      will check to see if a user is logged in to display the correct
+      'login/logout' links.
     </p>
   </div>
 </div>
