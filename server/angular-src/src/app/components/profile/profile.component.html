@@ -9,3 +9,7 @@
     </li>
   </ul>
 </div>
+<div *ngIf="!user">
+  <h1 class="page-header">Not Authorized</h1>
+  <p>Please login to view your profile page.</p>
+</div>
