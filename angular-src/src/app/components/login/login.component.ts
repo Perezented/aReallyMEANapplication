@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
 
     this.authService.authenticateUser(user).subscribe(
       data => {
-        console.log('looking at data', data)
         if (data['success']===true) {
           console.log('successful data')
           this.authService.storeUserData(data['token'], data['user']);
@@ -38,7 +37,7 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/dashboard');
         } else {
           console.log('failed data')
-        this.flashMessage.show(data['msg'] + " For testing purpusese, try JB, 123456", {cssClass: 'alert-danger', timeout: 10000})
+        this.flashMessage.show(data['msg'] + " For testing purposes, try admin, password", {cssClass: 'alert-danger', timeout: 10000})
         this.router.navigate(['login'])
         }
         
