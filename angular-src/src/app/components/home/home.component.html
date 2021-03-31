@@ -2,8 +2,18 @@
   <h1>MEAN Student Checkout App</h1>
   <p class="lead">Welcome to a custom really MEAN app.</p>
   <div>
-    <a [routerLink]="['/register']" class="btn btn-primary">Register</a>
-    <a [routerLink]="['/login']" class="btn btn-secondary">Login</a>
+    <a
+      *ngIf="!authService.loggedIn()"
+      [routerLink]="['/register']"
+      class="btn btn-primary"
+      >Register</a
+    >
+    <a
+      *ngIf="!authService.loggedIn()"
+      [routerLink]="['/login']"
+      class="btn btn-secondary"
+      >Login</a
+    >
   </div>
 </div>
 
