@@ -1,6 +1,6 @@
-<div class="jumbotron text-center">
-  <h1><b>A Really MEAN App</b></h1>
-  <p class="lead">Welcome to a custom really MEAN app.</p>
+<div class="jumbotron text-center bg-secondary">
+  <h1 class="text-white"><b>A Really MEAN App</b></h1>
+  <p class="lead" class="text-white">Welcome to a custom really MEAN app.</p>
   <div>
     <a
       *ngIf="!authService.loggedIn()"
@@ -11,7 +11,7 @@
     <a
       *ngIf="!authService.loggedIn()"
       [routerLink]="['/login']"
-      class="btn btn-secondary"
+      class="btn btn-secondary active"
       >Login</a
     >
   </div>
@@ -34,19 +34,6 @@
     </p>
   </div>
   <div class="col-md-4">
-    <h3><b>Express/Node</b></h3>
-    <p>
-      Back end server is developed using Node.js alongside its trusty sidekick,
-      Express.js. The server is also running on CORS, JSON Web Token
-      passport-jwt, Mongoose. Passport simplified the JSON Web Token
-      authentication to authorize logged-in users to protected routes.
-      Authentication is received using an 'Authentication header with a
-      'bearer'. A JWT is sent back to the front end for the rest of the session,
-      6 hrs. The server is currently mainly for users’ information to register
-      and log in.
-    </p>
-  </div>
-  <div class="col-md-4">
     <h3><b>Angular</b></h3>
     <p>
       The login to this page to view all components is 'admin' with a password
@@ -62,6 +49,19 @@
       cannot get to '/profile' nor '/dashboard' until logged in. The nav bar
       will check to see if a user is logged in to display the correct
       'login/logout' links.
+    </p>
+  </div>
+  <div class="col-md-4">
+    <h3><b>Express/Node</b></h3>
+    <p>
+      Back end server is developed using Node.js alongside its trusty sidekick,
+      Express.js. The server is also running on CORS, JSON Web Token
+      passport-jwt, Mongoose. Passport simplified the JSON Web Token
+      authentication to authorize logged-in users to protected routes.
+      Authentication is received using an 'Authentication header with a
+      'bearer'. A JWT is sent back to the front end for the rest of the session,
+      6 hrs. The server is currently mainly for users’ information to register
+      and log in.
     </p>
   </div>
 </div>
