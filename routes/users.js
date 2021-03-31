@@ -6,9 +6,20 @@ const User = require("../models/users.js");
 const dbconfig = require("../config/database");
 
 // get to users
-router.get("/", (req, res) => {
-  res.status(200).send("Users page exists here.");
-});
+router.get(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    User.getAllUsers((err, data) => {
+      if (err) throw err;
+      res.json({
+        users: data,
+        success: true,
+        msg: "/ was used to get to users"
+      });
+    });
+  }
+);
 
 // Register
 router.post("/register", (req, res, next) => {
@@ -38,7 +49,7 @@ router.post("/login", (req, res, next) => {
     if (err) throw err;
     // Check to make sure user is an existing user
     console.log("user: ", user);
-    if (user === null) {
+    if (user == "" || user == null || user == undefined) {
       return res.json({
         success: false,
         msg:
