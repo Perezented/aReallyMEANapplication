@@ -68,7 +68,7 @@ HomeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComp
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "MEAN Student Checkout App");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "p", 1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, "Welcome to the custom MEAN Student checkout app.");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, "Welcome to a custom really MEAN app.");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "div");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "a", 2);
@@ -332,7 +332,6 @@ class LoginComponent {
             password: this.password
         };
         this.authService.authenticateUser(user).subscribe(data => {
-            console.log('looking at data', data);
             if (data['success'] === true) {
                 console.log('successful data');
                 this.authService.storeUserData(data['token'], data['user']);
@@ -341,7 +340,7 @@ class LoginComponent {
             }
             else {
                 console.log('failed data');
-                this.flashMessage.show(data['msg'] + " For testing purpusese, try JB, 123456", { cssClass: 'alert-danger', timeout: 10000 });
+                this.flashMessage.show(data['msg'] + " For testing purposes, try admin, password", { cssClass: 'alert-danger', timeout: 10000 });
                 this.router.navigate(['login']);
             }
         });
