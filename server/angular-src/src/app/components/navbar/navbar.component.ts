@@ -8,20 +8,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
+  user: Object;
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private flashMessage: FlashMessagesService,
     private router: Router
   ) { }
-
+  
   ngOnInit(): void {
+    if (this.authService.loggedIn()) {
+      this.user = localStorage['user']
+    } else this.user = null;
   }
 
   onLogoutClick() {
     this.authService.logout();
     this.flashMessage.show("You have successfully logged out", { cssClass: 'alert-success', timeout: 3000 });
-    this.router.navigate(['/login']);
+    this.router.navigateByUrl('/login');
+    this.user = null;
+    this.ngOnInit();
     return false;
   }
 
