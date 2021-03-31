@@ -37,8 +37,16 @@ router.post("/login", (req, res, next) => {
   User.getUserByUsername(username, (err, user) => {
     if (err) throw err;
     // Check to make sure user is an existing user
+    console.log("user: ", user);
+    if (user === null) {
+      return res.json({
+        success: false,
+        msg:
+          "It seems we recieved no username, please check username and try again."
+      });
+    }
     if (!user) {
-      return res.status(404).json({
+      return res.json({
         success: false,
         msg: "User is not found in out system. Would you like to register?"
       });
@@ -52,11 +60,16 @@ router.post("/login", (req, res, next) => {
         res.status(200).json({
           user,
           session: req.session,
-          token: token
+          token: token,
+          msg: "Successful login",
+          success: true
         });
       } else {
         //otherwise, wrong password
-        return res.json({ success: false, msg: "Wrong password" });
+        return res.json({
+          success: false,
+          msg: "Password does not match the password in our systems."
+        });
       }
     });
   });
@@ -66,7 +79,8 @@ function createToken(user) {
   const secret = dbconfig.secret;
   const payload = {
     subject: user.id,
-    username: user.username
+    username: user.username,
+    success: user.success
   };
   const options = {
     expiresIn: "6h"
