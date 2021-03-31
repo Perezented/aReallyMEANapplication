@@ -34,6 +34,11 @@ module.exports.getUserByUsername = function (username, callback) {
   User.findOne(query, callback);
 };
 
+// get all profiles
+module.exports.getAllUsers = function (callback) {
+  User.find(callback);
+};
+
 // adding user and hashing password
 module.exports.addUser = function (newUser, callback) {
   bcrypt.genSalt(10, (err, salt) => {
