@@ -8,13 +8,12 @@
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
-      "outDir":"../public",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-src",
+            "outputPath": "../public",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",

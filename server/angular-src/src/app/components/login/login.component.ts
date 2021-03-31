@@ -35,8 +35,7 @@ export class LoginComponent implements OnInit {
           console.log('successful data')
           this.authService.storeUserData(data['token'], data['user']);
           this.flashMessage.show("You are now logged in, " + data['msg'], {cssClass: 'alert-success', timeout: 5000})
-          this.router.navigate(['dashboard'])
-          
+          this.router.navigateByUrl('/dashboard');
         } else {
           console.log('failed data')
         this.flashMessage.show(data['msg'] + " For testing purpusese, try JB, 123456", {cssClass: 'alert-danger', timeout: 10000})
