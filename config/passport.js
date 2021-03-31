@@ -7,7 +7,7 @@ module.exports = function (passport) {
   let opts = {};
   // recieve 'Authorization' header with bearer
   opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-  opts.secretOrKey = config.secret;
+  opts.secretOrKey = process.env.OPTSSECRET || config.secret;
   passport.use(
     new JwtStrategy(opts, function (jwt_payload, done) {
       User.getUserById(jwt_payload.subject, (err, user) => {

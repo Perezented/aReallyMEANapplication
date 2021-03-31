@@ -1,12 +1,10 @@
 <div *ngIf="user">
-  <h2 class="page-header">{{ user.name }}</h2>
+  <h2 class="page-header"><b>Profile Page</b></h2>
+  <h3 class="page-header">{{ user.name }}</h3>
   <ul class="list-group">
-    <li class="list-group-item">
-      {{ user.username }}
-    </li>
-    <li class="list-group-item">
-      {{ user.email }}
-    </li>
+    <li class="list-group-item"><b>Username: </b>{{ user.username }}</li>
+    <li class="list-group-item"><b>Email: </b>{{ user.email }}</li>
+    <li class="list-group-item"><b>UserID: </b>{{ user._id }}</li>
   </ul>
 </div>
 <div *ngIf="!user">
