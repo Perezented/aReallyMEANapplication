@@ -58,6 +58,19 @@ export class AuthService {
     .pipe(map((res)=> res)
     );
   }
+  
+  // Gets all users info
+  getAllUsers() {
+    this.loadBearerToken();
+    let headers = new HttpHeaders({
+      'Authorization': this.authToken,
+      'Content-Type': 'application/json'
+    });
+    return this.http.get('users',  { headers: headers })
+    .pipe(map((res)=> res)
+    );
+  
+  }
 
   // Fetches from local storage
   loadBearerToken() {
