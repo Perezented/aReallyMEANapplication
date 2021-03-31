@@ -48,14 +48,6 @@ router.post("/login", (req, res, next) => {
   User.getUserByUsername(username, (err, user) => {
     if (err) throw err;
     // Check to make sure user is an existing user
-    console.log("user: ", user);
-    if (user == "" || user == null || user == undefined) {
-      return res.json({
-        success: false,
-        msg:
-          "It seems we recieved no username, please check username and try again."
-      });
-    }
     if (!user) {
       return res.json({
         success: false,
