@@ -21,7 +21,7 @@ const app = express();
 
 const users = require("./routes/users");
 
-const port = 3007;
+const port = process.env.PORT || 8080;
 
 // CORS Middleware
 app.use(cors());
@@ -46,6 +46,12 @@ app.get("/", (req, res) => {
     "You got to the / of this local host page. Welcome to the empty home page."
   );
 });
+
+// redirect all other traffic to index.html
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/index.html"));
+});
+
 // Message for server start
 app.listen(port, () => {
   console.log("Server started on localhost:" + port);

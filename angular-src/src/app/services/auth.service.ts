@@ -14,7 +14,7 @@ export class AuthService {
   registerUser(user) {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3007/users/register', user, { headers: headers })
+    return this.http.post('users/register', user, { headers: headers })
     .pipe(map((res)=> res)
     );
     
@@ -22,7 +22,7 @@ export class AuthService {
   authenticateUser(user) {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3007/users/login', user, { headers: headers })
+    return this.http.post('users/login', user, { headers: headers })
     .pipe(map((res)=> res)
     );
   }
@@ -54,7 +54,7 @@ export class AuthService {
       'Authorization': this.authToken,
       'Content-Type': 'application/json'
     });
-    return this.http.get('http://localhost:3007/users/profile',  { headers: headers })
+    return this.http.get('users/profile',  { headers: headers })
     .pipe(map((res)=> res)
     );
   }
