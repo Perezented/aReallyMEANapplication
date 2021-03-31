@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const config = require("./config/database");
 
 // Connect to DB
-mongoose.connect(process.env.MONGODB_URL || config.database);
+mongoose.connect(process.env.MONGODB_URI || config.database);
 // On Connection, display message
 mongoose.connection.on("connected", () => {
   console.log("Connected to database " + config.database);
