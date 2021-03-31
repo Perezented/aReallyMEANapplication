@@ -1,2 +1,17 @@
-<h2 class="page-header">Dashboard</h2>
-<p>Welcome to your dashboard</p>
+<section *ngIf="user">
+  <h2 class="page-header"><b>Dashboard</b></h2>
+  <p>Welcome to your dashboard, {{ user.name }}</p>
+  <div class="list-group">
+    <h3>List of all users registered in our system:</h3>
+    <div class="list-group-item flex" *ngFor="let user of users">
+      <p><b>Username: </b>{{ user.username }}</p>
+      <p><b>Name: </b>{{ user.name }}</p>
+      <p><b>Email: </b>{{ user.email }}</p>
+      <p><b>UserID: </b>{{ user._id }}</p>
+    </div>
+  </div>
+</section>
+<div *ngIf="!user">
+  <h1 class="page-header">Not Authorized</h1>
+  <p>Please login to view your profile page.</p>
+</div>
